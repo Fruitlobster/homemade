@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     private float origGrav;
     private BoxCollider2D myBox;
+    private float maxSpeed;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
         myBox = GetComponent<BoxCollider2D>();
         origGrav = rb2d.gravityScale * GameLogic.instance.gravity;
         rb2d.gravityScale = origGrav;
+        maxSpeed = 100;
         
 
         playerState = state.FREE;
