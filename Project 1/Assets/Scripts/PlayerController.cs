@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 enum state { FREE, HANGING, STUNNED,FLYING } ;
 
@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour {
     public float speed;             //Floating point variable to store the player's movement speed.
     public float moveHorizontal = 0.0f;
     public float moveVertical = 0.0f;
+    public GameObject player;
+    public GameObject GameManager;
 
     state playerState;
     private Rigidbody2D rb2d;
@@ -98,8 +100,11 @@ public class PlayerController : MonoBehaviour {
             yield return null;
         }
     }
+
+    //What happens on Collision
     private void OnCollisionEnter2D(Collision2D other)
     {
+        //If we jump on a floor we want to hang on it 
        if(other.collider.tag == "Floor" && other.collider.transform.position.y >= transform.position.y)
         {
             playerState = state.HANGING;
@@ -111,6 +116,18 @@ public class PlayerController : MonoBehaviour {
        // rb2d.gravityScale = origGrav;
         myBox.enabled = true;
     }
+
+    //what happens on trigger collision
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            other.gameObject.GetComponent<Transition>().transition(player, GameManager);
+            Debug.Log("TriggerExit");              
+        }
+    }
+
+
     private bool Jump()
     {
         return (Input.GetButtonDown("Jump") && Mathf.Abs(rb2d.velocity.y) <= 0.01f);
