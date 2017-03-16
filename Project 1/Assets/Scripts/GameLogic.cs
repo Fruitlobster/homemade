@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/******************************************************************
+//The GameLogic manages every part of the overall game like the gravity, the gameSpeed etc.
+*******************************************************************/
 public class GameLogic : MonoBehaviour {
 
-    public float gameSpeed = 1f;
-    public float gravity = 0.5f;
-    public static GameLogic instance = null;
-
+    public float gameSpeed = 1f;                    //The game speed determines how fast everything moves.
+    public float gravity = 0.5f;                    //The gravity determines how much everything gets pulled to the earth
+    public static GameLogic instance = null;        
 
     private void Awake()
     {

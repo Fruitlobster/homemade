@@ -1,4 +1,7 @@
 sceneSetups:
-- path: Assets/Dschungel1.unity
+- path: Assets/Scenes/Dschungel1.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/Dschungel2.unity
+  isLoaded: 1
+  isActive: 0
